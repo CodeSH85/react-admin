@@ -2,7 +2,7 @@ import { Button as HButton } from '@headlessui/react';
 import { twMerge } from 'tailwind-merge';
 import type { ButtonProps, ButtonVariant } from './type';
 import type { Size } from '../type';
-import { Icon } from '../icon/index';
+import { Icon } from '../icon';
 
 const Button = (props: ButtonProps) => {
   const {
