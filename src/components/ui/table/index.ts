@@ -1,1 +1,1 @@
-export * from './dataTable';
+export * from './data-table';
