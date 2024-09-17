@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-  title: 'React + Tailwinds',
+  title: 'React Admin',
   description: 'My App is a...',
 }
 
@@ -14,7 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <main id="root">{children}</main>
+        <main id="root">
+          {children}
+        </main>
       </body>
     </html>
   )  
