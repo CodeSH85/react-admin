@@ -3,31 +3,43 @@
 import MainLayout from '@/components/layouts/main-layout';
 import { Tab, TabItemProp } from '@/components/ui/tab';
 import DashboardPage from './dashboard/page';
+import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const HomePage = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   const mockTabs: TabItemProp[] = [
     {
       title: 'Dashboard',
       key: 'dashboard',
+      path: '/dashboard',
     },
     {
-      title: 'Invoice',
-      key: 'invoice',
+      title: 'Report',
+      key: 'report',
+      path: '/report',
     },
   ];
 
-  async function onSetCurrentTabIndex(idx) {
-    setCurrentTabIndex(idx);
-  }
+  const getCurrentTabIndex = () => {
+    return mockTabs.findIndex(tab => {
+      return tab.path ? pathname.startsWith(tab.path) : 0;
+    });
+  };
 
   const MainTab = () => {
     return (
       <Tab
         items={mockTabs}
         currentIndex={currentTabIndex}
-        setCurTab={onSetCurrentTabIndex}
+        setCurTab={(idx) => {
+          // Use Link component for client-side navigation
+          const selectedTab = mockTabs[idx];
+          router.push(selectedTab.path);
+        }}
       ></Tab>
     );
   };

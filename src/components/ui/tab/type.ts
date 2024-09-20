@@ -5,6 +5,7 @@ export type TabItemProp = {
   key: string | number;
   active?: boolean;
   tag?: string;
+  path?: string;
   currentIndex?: number;
   className?: string;
   prepend?: ReactNode;
