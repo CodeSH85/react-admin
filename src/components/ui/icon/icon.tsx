@@ -1,7 +1,7 @@
 import * as icons from "react-icons/md";
 
 const Icon = (props: { icon: string, [key: string]: any }) => {
-  const { icon, otherProps } = props;
+  const { icon, ...otherProps } = props;
   const Icon = icons[icon as keyof typeof icons];
 
   return (

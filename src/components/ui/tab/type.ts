@@ -7,9 +7,11 @@ export type TabItemProp = {
   tag?: string;
   path?: string;
   currentIndex?: number;
+  closable?: boolean;
   className?: string;
   prepend?: ReactNode;
   append?: ReactNode;
+  onClose?: Function;
   [otherOptions: string]: unknown;
 };
 
@@ -19,7 +21,7 @@ export type TabProps = {
   children?: React.ReactNode;
   closable?: boolean;
   tag?: string;
-  setCurTab?: Function;
-  onCloseTab?: (e: React.MouseEvent<HTMLElement>, key: string | number) => void;
+  onSetCurTab?: Function;
+  onCloseTab?: (index: number) => void;
   [othersOptions: string]: unknown;
 };
