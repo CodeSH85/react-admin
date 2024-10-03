@@ -1,10 +1,14 @@
-export type BaseModel = {
-  id: string,
-  key: string,
-  title: string
-}
+import { ReactNode } from 'react';
 
-export type User = {
-  name: string,
-  role: 'admin' | 'user' | 'dev'
+export type TabItem = {
+  title: string | number;
+  key: string | number;
+  active?: boolean;
+  tag?: string;
+  path?: string;
+  currentIndex?: number;
+  className?: string;
+  prepend?: ReactNode;
+  append?: ReactNode;
+  [otherOptions: string]: unknown;
 }
