@@ -5,6 +5,7 @@ import { Tab } from '@/components/ui/tab';
 
 import { useTabs } from '@/hooks/useTabs';
 import { useRouter } from 'next/navigation';
+import SidePanel from '../panel/side-panel';
 
 type MainLayoutProps = {
   children: ReactNode;
@@ -18,6 +19,7 @@ const MainTab = () => {
     setCurrentTab(targetIndex);
     const updatedTab = tabs[targetIndex];
     router.push(updatedTab.path as string);
+    // router.push(currentTab.path as string);
   }
   function handleCloseTab(targetIndex: number) {
     removeTab(targetIndex);
@@ -34,10 +36,15 @@ const MainTab = () => {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <>
+    <div className='flex flex-col h-full w-full'>
       <MainTab />
-      <section>{children}</section>
-    </>
+      <div className='relative h-full w-full'>
+        <section className='h-full w-full'>
+          {children}
+        </section>
+        <SidePanel />
+      </div>
+    </div>
   );
 };
 
