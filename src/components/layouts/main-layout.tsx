@@ -6,6 +6,7 @@ import { Tab } from '@/components/ui/tab';
 import { useTabs } from '@/hooks/useTabs';
 import { useRouter } from 'next/navigation';
 import SidePanel from '../panel/side-panel';
+import { SplitPanel } from '../ui/split-panel';
 
 type MainLayoutProps = {
   children: ReactNode;
@@ -36,13 +37,18 @@ const MainTab = () => {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div className='flex flex-col h-full w-full'>
+    <div className='flex h-full w-full flex-col'>
       <MainTab />
       <div className='relative h-full w-full'>
-        <section className='h-full w-full'>
-          {children}
-        </section>
-        <SidePanel />
+        <SplitPanel
+          panelLeft={
+            <section className='h-full w-full'>{children}</section>
+          }
+          panelRight={
+            <SidePanel />
+          }
+        >
+        </SplitPanel>
       </div>
     </div>
   );
