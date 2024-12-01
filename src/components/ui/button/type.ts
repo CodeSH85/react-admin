@@ -1,14 +1,14 @@
 import type { ButtonProps as HeadlessUIProp } from '@headlessui/react';
-import type { Variant, Size } from '../type';
+import type { Variant, Size, Color } from '../type';
 
 export type ButtonVariant = 'text' | Variant;
 
 export type InternalButtonProps = {
-  color?: string;
+  variant?: ButtonVariant;
+  color?: Color;
+  size?: Size;
   prependIcon?: string;
   appendIcon?: string;
-  variant?: ButtonVariant;
-  size?: Size;
   className?: string;
   children?: React.ReactNode;
   [othersOptions: string]: unknown;
