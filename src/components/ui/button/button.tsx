@@ -12,30 +12,28 @@ const buttonVariants = cva(
   `,
   {
     variants: {
+      color: {
+        primary: 'bg-primary text-on-primary',
+        secondary: 'bg-secondary',
+        success: 'bg-success',
+        error: 'bg-error text-on-error',
+        current: 'bg-current',
+        info: ''
+      },
       variant: {
-        plain: `
-          bg-slate-200 text-slate-600
-          data-[hover]:bg-slate-100 data-[hover]:text-slate-500
-        `,
+        plain: ``,
         outlined: `
-          text-blue-500 border border-current
-          bg-transparent data-[hover]:bg-blue-100 data-[hover]:text-blue-600
+          border border-current text-current bg-surface
         `,
-        flat: `
-          bg-blue-500
-          data-[hover]:bg-blue-400 data-[active]:bg-sky-700 text-white
-        `,
-        elevated: 'bg-slate-300 drop-shadow',
+        flat: ``,
+        elevated: 'drop-shadow',
         text: `
-          bg-transparent 
-          data-[hover]:bg-blue-100 text-blue-500
+          bg-surface text-current
         `
       },
-      color: {
-        success: `bg-green-300 text-green-300`,
-        secondary: `bg-blue-500`,
-        error: `bg-red-600`,
-        info: `bg-blue-500`
+      rounded: {
+        normal: "rounded",
+        full: "rounded-full"
       },
       size: {
         xs: 'text-xs px-1 py-0.5 text-dsm ',
@@ -46,10 +44,11 @@ const buttonVariants = cva(
       }
     },
     compoundVariants: [
-
     ],
     defaultVariants: {
       variant: 'flat',
+      color: 'primary',
+      rounded: 'normal',
       size: 'md',
     },
   }
@@ -60,6 +59,7 @@ const Button = (props: ButtonProps) => {
     variant,
     size,
     color,
+    rounded,
     prependIcon,
     appendIcon,
     children,
@@ -69,7 +69,7 @@ const Button = (props: ButtonProps) => {
 
   const buttonClass = twMerge(
     buttonVariants({ variant, size, color }),
-    propClassName
+    propClassName,
   );
 
   return (
