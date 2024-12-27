@@ -2,10 +2,10 @@ import { Button } from '@/components/ui/button';
 import { TextInput } from '@/components/ui/textInput';
 import { Checkbox } from '@/components/ui/checkbox';
 
-const DashboardPage = () => {
+const ComponentPage = () => {
   return (
     <>
-      <div className='flex items-center gap-1 bg-slate-100'>
+      <div className='flex items-center gap-1'>
         <Button variant='elevated' size='xs'>
           Elevated
         </Button>
@@ -13,7 +13,7 @@ const DashboardPage = () => {
           Plain
         </Button>
         <Button variant='text'>Text</Button>
-        <Button variant='flat' size='lg'>
+        <Button variant='flat' size='lg' color='error'>
           Flat
         </Button>
         <Button variant='outlined' size='xl'>
@@ -34,4 +34,4 @@ const DashboardPage = () => {
   )
 }
 
-export default DashboardPage
+export default ComponentPage

@@ -1,22 +1,12 @@
 import { TabItem } from './../types/type';
-import { useMemo, useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const defaultTabs: TabItem[] = [
   {
-    title: 'Dashboard',
-    key: 'dashboard',
-    path: '/dashboard',
-  },
-  {
-    title: 'Report',
-    key: 'report',
-    path: '/report',
-  },
-  {
-    title: 'Browse',
-    key: 'browse',
-    path: '/browse',
-  },
+    title: 'Components',
+    key: 'components',
+    path: '/components',
+  }
 ];
 
 const useTabs = () => {
