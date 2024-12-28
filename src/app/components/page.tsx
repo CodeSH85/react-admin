@@ -1,37 +1,22 @@
-import { Button } from '@/components/ui/button';
-import { TextInput } from '@/components/ui/textInput';
-import { Checkbox } from '@/components/ui/checkbox';
+import React from 'react';
+
+import { ComponentTemplate } from '@/features/components/useTemplate';
+import { ButtonTemplate } from '@/features/components/buttons';
+import { TextInputTemplate } from '@/features/components/text-input';
+import { CheckboxTemplate } from '@/features/components/checkbox';
+import { SwitchTemplate } from '@/features/components/switch';
+import { IconTemplate } from '@/features/components/icon';
 
 const ComponentPage = () => {
   return (
-    <>
-      <div className='flex items-center gap-1'>
-        <Button variant='elevated' size='xs'>
-          Elevated
-        </Button>
-        <Button variant='plain' size='sm'>
-          Plain
-        </Button>
-        <Button variant='text'>Text</Button>
-        <Button variant='flat' size='lg' color='error'>
-          Flat
-        </Button>
-        <Button variant='outlined' size='xl'>
-          Outlined
-        </Button>
-      </div>
-      <div className='flex gap-1'>
-        <Button variant='flat' size='md' prependIcon='FaHome'>
-          Prepend Icon
-        </Button>
-        <Button variant='flat' size='md' appendIcon='FaUser'>
-          Append Icon
-        </Button>
-      </div>
-      <TextInput label='show' disabled={true} clearable={true} />
-      <Checkbox />
-    </>
-  )
-}
+    <div className='flex flex-col gap-2 p-2'>
+      {ComponentTemplate(ButtonTemplate)}
+      {ComponentTemplate(TextInputTemplate)}
+      {ComponentTemplate(CheckboxTemplate)}
+      {ComponentTemplate(SwitchTemplate)}
+      {ComponentTemplate(IconTemplate)}
+    </div>
+  );
+};
 
-export default ComponentPage
+export default ComponentPage;
