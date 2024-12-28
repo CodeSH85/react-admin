@@ -1,4 +1,6 @@
 export type CheckBoxProps = {
-  className?: string 
-  children?: React.ReactNode
+  label?: string;
+  className?: string;
+  disabled?: boolean;
+  [key: string]: any;
 }

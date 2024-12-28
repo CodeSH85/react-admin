@@ -7,13 +7,13 @@ import { Icon } from '../icon';
 
 const buttonVariants = cva(
   `
-    w-fit h-fit rounded flex items-center gap-1 px-2 py-1
+    w-fit h-fit rounded flex items-center gap-1
     data-[hover]:bg-opacity-90 data-[active]:bg-opacity-75 transition-all
   `,
   {
     variants: {
       color: {
-        primary: 'bg-primary text-on-primary',
+        primary: ['bg-primary text-on-primary dark:bg-primary dark:text-on-primary'],
         secondary: 'bg-secondary',
         success: 'bg-success',
         error: 'bg-error text-on-error',
@@ -23,12 +23,12 @@ const buttonVariants = cva(
       variant: {
         plain: ``,
         outlined: `
-          border border-current text-current bg-surface
+          border border-current bg-surface dark:bg-slate-700/10 text-current
         `,
         flat: ``,
-        elevated: 'drop-shadow',
+        elevated: 'drop-shadow', 
         text: `
-          bg-surface text-current
+          bg-surface dark:bg-slate-700/10 text-current 
         `
       },
       rounded: {
@@ -36,7 +36,7 @@ const buttonVariants = cva(
         full: "rounded-full"
       },
       size: {
-        xs: 'text-xs px-1 py-0.5 text-dsm ',
+        xs: 'text-xs px-1 py-0.5',
         sm: 'text-sm px-2 py-1',
         md: 'text-md px-3 py-1.5',
         lg: 'text-lg px-4 py-2',
@@ -73,7 +73,10 @@ const Button = (props: ButtonProps) => {
   );
 
   return (
-    <HButton className={buttonClass} {...otherProps}>
+    <HButton 
+      className={buttonClass} 
+      {...otherProps}
+    >
       {prependIcon && <Icon icon={prependIcon} className="mr-1" />}
       {children}
       {appendIcon && <Icon icon={appendIcon} className="ml-1" />}

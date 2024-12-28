@@ -1,9 +1,8 @@
-
-import type { Variant } from '../type';
-
-export type SwitchType = {
-  checked: boolean;
+export type SwitchPropType = {
+  checked?: boolean;
   className?: string;
-  variant?: Variant;
+  description?: string;
+  disabled?: boolean;
+  label?: string;
   [key: string]: any;
 }

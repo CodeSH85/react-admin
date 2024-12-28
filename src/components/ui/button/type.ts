@@ -7,6 +7,7 @@ export type InternalButtonProps = {
   variant?: ButtonVariant;
   color?: Color;
   size?: Size;
+  rounded?: 'normal';
   prependIcon?: string;
   appendIcon?: string;
   className?: string;
