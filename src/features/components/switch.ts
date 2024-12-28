@@ -13,7 +13,7 @@ export const SwitchTemplate = {
     {
       props: {
         disabled: true,
-        label: 'Disabled',
+        label: 'Disabled'
       },
     }
   ],

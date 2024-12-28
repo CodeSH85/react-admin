@@ -18,7 +18,8 @@ export const ComponentTemplate = (props: ComponentSectionProps) => {
       <p className='p-1 my-2 dark:text-white'>{description}</p>
       <div className='
       bg-slate-50 dark:bg-slate-700 
-        flex items-center gap-1 rounded-md px-3 py-4 outline-1 justify-center'
+        flex items-center gap-1 rounded-md px-3 py-4 justify-center
+        border-2 dark:border-slate-600'
       >
         {data.map((item: any, index: number) => (
           <Component key={index} {...item.props} />
