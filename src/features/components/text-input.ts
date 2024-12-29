@@ -7,12 +7,14 @@ export const TextInputTemplate = {
   data: [
     {
       props: {
+        label: 'Label',
         variant: 'filled',
         placeholder: 'Filled',
       },
     },
     {
       props: {
+        label: 'Disabled',
         placeholder: 'Disabled',
         disabled: true,
       },
