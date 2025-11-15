@@ -1,29 +1,29 @@
-import appCss from '@/styles/globals.css'
+import appCss from '@/styles/globals.css?url'
 import {
   Outlet,
   createRootRoute,
   HeadContent,
-  Scripts,
-} from "@tanstack/react-router"
+  Scripts
+} from '@tanstack/react-router'
 
 export const Route = createRootRoute({
   head: () => ({
     meta: [
-      { charSet: "utf-8" },
+      { charSet: 'utf-8' },
       {
-        name: "viewport",
-        content: "width=device-width, initial-scale=1",
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
       },
-      { title: "TanStack Start Starter" }
+      { title: 'TanStack Start Starter' }
     ],
     links: [
       {
         rel: 'stylesheet',
-        href: appCss,
-      },
-    ],
+        href: appCss
+      }
+    ]
   }),
-  component: RootLayout,
+  component: RootLayout
 })
 
 function RootLayout() {
