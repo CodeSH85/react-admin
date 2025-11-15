@@ -4,43 +4,40 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "vite dev",
+    "build": "vite build",
+    "start": "node .output/server/index.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.2",
     "@radix-ui/themes": "^3.2.0",
+    "@tanstack/react-router": "^1.136.4",
+    "@tanstack/react-start": "^1.136.4",
     "@tanstack/react-table": "^8.20.5",
     "@tanstack/react-virtual": "^3.10.8",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "i18next": "^22.5.1",
-    "i18next-http-backend": "^2.5.2",
-    "localforage": "^1.10.0",
-    "match-sorter": "^6.3.4",
-    "mongoose": "^8.6.2",
-    "next": "^14.2.5",
-    "prettier": "^3.3.3",
     "radix-ui": "^1.1.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^12.3.1",
     "react-icons": "^5.3.0",
     "react-router-dom": "^6.24.1",
-    "sort-by": "^1.2.0",
-    "tailwind-merge": "^2.4.0"
+    "sort-by": "^1.2.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.17",
     "@types/node": "^18.19.39",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.19",
     "dotenv": "^16.4.5",
     "eslint-config-prettier": "^9.1.0",
     "postcss": "^8.4.39",
     "prettier-plugin-tailwindcss": "^0.6.6",
     "tailwindcss": "^3.4.4",
-    "typescript": "^4.9.5"
-  }
+    "typescript": "^4.9.5",
+    "vite": "^7.2.2",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "packageManager": "pnpm@10.8.1+sha512.c50088ba998c67b8ca8c99df8a5e02fd2ae2e2b29aaf238feaa9e124248d3f48f9fb6db2424949ff901cffbb5e0f0cc1ad6aedb602cd29450751d11c35023677"
 }
