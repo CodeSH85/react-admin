@@ -12,7 +12,7 @@ export default defineConfig([
       js,
       '@stylistic': stylistic
     },
-    extends: ['js/recommended', 'plugin:react/jsx-runtime'],
+    extends: ['js/recommended'],
     languageOptions: {
       globals: globals.browser
     },
@@ -48,5 +48,5 @@ export default defineConfig([
     }
   },
   tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended
+  pluginReact.configs.flat['jsx-runtime']
 ])
