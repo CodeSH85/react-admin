@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   server: {
-    port: 3000,
+    port: 3000
   },
   plugins: [
     tailwindcss(),
@@ -17,9 +17,9 @@ export default defineConfig({
       srcDirectory: 'src', // This is the default
       router: {
         // Specifies the directory TanStack Router uses for your routes.
-        routesDirectory: 'app', // Defaults to "routes", relative to srcDirectory
-      },
+        routesDirectory: 'app' // Defaults to "routes", relative to srcDirectory
+      }
     }),
-    viteReact(),
-  ],
+    viteReact()
+  ]
 })
