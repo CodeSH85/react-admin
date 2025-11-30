@@ -1,18 +1,32 @@
-import * as icons from "react-icons/md";
+import { default as MdiIcon } from '@mdi/react'
+import * as mdiIcons from '@mdi/js'
 
-const Icon = (props: { icon: string, [key: string]: any }) => {
-  const { icon, ...otherProps } = props;
-  const Icon = icons[icon as keyof typeof icons];
+interface IconProps {
+  path: string
+  size?: number
+  [key: string]: unknown
+}
+
+export const Icon = (props: IconProps) => {
+
+  const {
+    path,
+    size = 1,
+    ...otherProps
+  } = props
+
+  const iconPath = mdiIcons[path as keyof typeof mdiIcons]
+
+  if (!iconPath) {
+    console.warn(`Icon "${path}" not found`)
+    return null
+  }
 
   return (
-    <>
-      { Icon
-        ? <Icon 
-            {...otherProps}
-          /> 
-        : null}
-    </>
-  );
-};
-
-export { Icon };
+    <MdiIcon
+      path={iconPath}
+      size={size}
+      {...otherProps}
+    />
+  )
+}
