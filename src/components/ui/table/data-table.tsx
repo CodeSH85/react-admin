@@ -46,7 +46,7 @@ const DataTable = (props: DataTableProps) => {
         className='grid'
       >
         <thead
-          className='grid sticky top-0 z-[1]'
+          className='grid sticky top-0 z-1'
         >
           {table.getHeaderGroups().map((headerGroup) => (
             <tr 

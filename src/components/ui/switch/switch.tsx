@@ -8,7 +8,7 @@ const switchVariants = cva(
   `
     group relative flex min-h-6 min-w-12 cursor-pointer rounded-full 
     p-1 transition-colors duration-200 ease-in-out
-    focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white data-[checked]:bg-primary
+    focus:outline-hidden data-focus:outline-1 data-focus:outline-white data-checked:bg-primary
   `,
   {
     variants: {
@@ -61,8 +61,8 @@ const Switch = (props: SwitchPropType) => {
             className={
               clsx(
                 `bg-white pointer-events-none inline-block size-4 translate-x-0 rounded-full shadow-lg
-                ring-0 transition duration-200 ease-in-out group-data-[checked]:translate-x-6 
-                dark:shadow-none dark:ring-0 dark:group-data-[checked]:translate-x-6`,
+                ring-0 transition duration-200 ease-in-out group-data-checked:translate-x-6 
+                dark:shadow-none dark:ring-0 dark:group-data-checked:translate-x-6`,
                 disabled && 'bg-gray-200'
               )
             }
