@@ -14,7 +14,7 @@ const Checkbox = (props: CheckBoxProps) => {
   } = props;
   const [enabled, setEnabled] = useState(false);
   const inputClass = twMerge(
-    'group block size-4 rounded border bg-white data-[checked]:bg-blue-500',
+    'group block size-4 rounded-sm border bg-white data-checked:bg-blue-500',
     propClassName
   );
   return (
@@ -26,7 +26,7 @@ const Checkbox = (props: CheckBoxProps) => {
         className={inputClass}
         {...otherProps}
       >
-        <svg className="stroke-white opacity-0 group-data-[checked]:opacity-100" viewBox="0 0 14 14" fill="none">
+        <svg className="stroke-white opacity-0 group-data-checked:opacity-100" viewBox="0 0 14 14" fill="none">
           <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </HCheckbox>

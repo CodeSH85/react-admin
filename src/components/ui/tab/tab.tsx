@@ -1,7 +1,7 @@
-import { Icon } from '../icon';
-import { twMerge } from 'tailwind-merge';
+import { Icon } from '../icon'
+import { twMerge } from 'tailwind-merge'
 
-import type { TabItemProp, TabProps } from './type';
+import type { TabItemProp, TabProps } from './type'
 
 const TabItem = (props: TabItemProp) => {
   const {
@@ -14,13 +14,13 @@ const TabItem = (props: TabItemProp) => {
     closable,
     onClose,
     ...rest
-  } = props;
+  } = props
 
   const tabItemDefaultClass = twMerge(
     'px-4 py-1 flex gap-1 text-slate-600 justify-between bg-slate-50 cursor-pointer items-center',
     active && 'bg-white text-black',
     propClass
-  );
+  )
 
   return (
     <div className={tabItemDefaultClass} {...rest}>
@@ -29,8 +29,8 @@ const TabItem = (props: TabItemProp) => {
       {closable && <Icon icon={'MdClose'} onClick={onClose} />}
       {append && append}
     </div>
-  );
-};
+  )
+}
 
 const Tab = (props: TabProps) => {
   const {
@@ -39,16 +39,16 @@ const Tab = (props: TabProps) => {
     currentIndex,
     onCloseTab,
     onSetCurTab,
-    closable = true,
-  } = props;
+    closable = true
+  } = props
 
   function onTabItemClick(index: number) {
-    if (onSetCurTab) onSetCurTab(index);
+    if (onSetCurTab) onSetCurTab(index)
   }
 
   function handleCloseTab(e: Event, index: number) {
-    e.stopPropagation();
-    if (onCloseTab) onCloseTab(index);
+    e.stopPropagation()
+    if (onCloseTab) onCloseTab(index)
   }
 
   return (
@@ -66,8 +66,8 @@ const Tab = (props: TabProps) => {
           />
         ))}
     </nav>
-  );
-};
+  )
+}
 
-export { Tab };
-export type { TabProps, TabItemProp };
+export { Tab }
+export type { TabProps, TabItemProp }

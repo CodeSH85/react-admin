@@ -28,7 +28,7 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx",
+    "**/*.tsx", "src/components/layouts/main-layout.tsx.bak",
   ],
   "exclude": ["node_modules"]
 }
