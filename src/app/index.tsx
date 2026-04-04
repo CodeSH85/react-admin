@@ -30,7 +30,6 @@ function Home() {
 const TopNav = () => {
   return (
     <div className='w-full min-h-8 bg-slate-400'>
-
     </div>
   )
 }
@@ -49,7 +48,7 @@ const SideNav = () => {
           'min-h-full min-w-2 bg-slate-200 p-2 transition-all duration-150 ease-in',
           expand ? 'w-48' : 'w-12'
         ]
-        .join(' ')
+          .join(' ')
       }
     >
       <button
