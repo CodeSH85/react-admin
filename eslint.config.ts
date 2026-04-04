@@ -31,6 +31,8 @@ export default defineConfig([
       '@stylistic/curly-newline': ['error', { 'consistent': true }],
       '@stylistic/eol-last': ['error', 'always'],
 
+      '@stylistic/indent': ['error', 2],
+
       '@stylistic/keyword-spacing': ['error', { 'before': true, 'after': true }],
       '@stylistic/space-before-blocks': 'error',
       '@stylistic/space-before-function-paren': ['error', 'never'],
@@ -47,6 +49,8 @@ export default defineConfig([
       '@stylistic/no-multiple-empty-lines': ['error', { 'max': 1, 'maxEOF': 0 }]
     }
   },
+  pluginReact.configs.flat.recommended,
+  pluginReact.configs.flat['jsx-runtime'],
   tseslint.configs.recommended,
-  pluginReact.configs.flat['jsx-runtime']
+  tseslint.configs.stylistic
 ])
