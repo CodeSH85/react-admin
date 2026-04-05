@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/ui/icon'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 export const Route = createFileRoute('/')({
   component: Home
@@ -9,17 +10,16 @@ export const Route = createFileRoute('/')({
 
 function Home() {
   return (
-    <main>
-      <div className="h-full flex">
+    <main className="flex flex-col">
+      <TopNav></TopNav>
+      <div className="flex grow max-w-full bg-slate-500 overflow-hidden">
         <SideNav></SideNav>
-        <div className="h-full flex-auto flex flex-col bg-gray-300">
-          <TopNav></TopNav>
-          <div className="p-3 grow overflow-hidden ">
-            <div className="bg-slate-100 w-full h-full p-2 rounded">
-              <Button>
-                Test Button 123
-              </Button>
-            </div>
+        <div className="flex-auto p-1.5 overflow-hidden">
+          <div className="bg-slate-100 dark:bg-gray-800 min-h-full overflow-auto p-2">
+            {/* <div style={{ height: '1200px', width: '2120px', outline: '2px solid red' }}>123</div> */}
+            <Button>
+              Test Button 123
+            </Button>
           </div>
         </div>
       </div>
@@ -27,14 +27,28 @@ function Home() {
   )
 }
 
-const TopNav = () => {
+const TopNav = ({ className }: { className?: string }) => {
+
+  const { toggleDarkMode } = useDarkMode()
+
   return (
-    <div className='w-full min-h-8 bg-slate-400'>
+    <div className={`min-h-8 flex items-center justify-between bg-slate-400 p-1.5 ${className}`}>
+      <div className="">
+        Logo
+      </div>
+      <div className="">
+        <Button 
+          size='sm'
+          onClick={toggleDarkMode}
+        >
+          Toggle Mode
+        </Button>
+      </div>
     </div>
   )
 }
 
-const SideNav = () => {
+const SideNav = ({ className }: { className?: string }) => {
   const [expand, setExpand] = useState(false)
 
   function toggleExpand() {
@@ -45,7 +59,7 @@ const SideNav = () => {
     <div
       className={
         [
-          'min-h-full min-w-2 bg-slate-200 p-2 transition-all duration-150 ease-in',
+          `min-w-12 bg-slate-200 p-2 transition-all duration-150 ease-in ${className}`,
           expand ? 'w-48' : 'w-12'
         ]
           .join(' ')

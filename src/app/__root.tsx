@@ -5,6 +5,7 @@ import {
   HeadContent,
   Scripts
 } from '@tanstack/react-router'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -27,12 +28,14 @@ export const Route = createRootRoute({
 })
 
 function RootLayout() {
+  const { darkMode } = useDarkMode()
+
   return (
-    <html lang="en">
+    <html lang="en" className={darkMode ? 'dark' : ''}>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className='w-screen h-screen'>
         <Outlet />
         <Scripts />
       </body>
