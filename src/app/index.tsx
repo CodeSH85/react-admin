@@ -54,7 +54,11 @@ const SideNav = () => {
       <button
         onClick={toggleExpand}
       >
-        {expand ? <Icon path="mdiAccount"></Icon> : <Icon path="mdiAirballoon"></Icon>}
+        {
+          expand 
+          ? <Icon name="mdiAccount"></Icon>
+          : <Icon name="mdiAirballoon"></Icon>
+        }
       </button>
       <div className="">
         Nav
