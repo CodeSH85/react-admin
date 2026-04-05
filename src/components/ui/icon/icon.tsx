@@ -2,28 +2,32 @@ import { default as MdiIcon } from '@mdi/react'
 import * as mdiIcons from '@mdi/js'
 
 interface IconProps {
-  path: string
+  name: string
   size?: number
   [key: string]: unknown
 }
 
-export const Icon = (props: IconProps) => {
+// .default because in Vite 8 Rolldown version, default interop is no longer automatic,
+// and we need to explicitly access the default export of the CommonJS module.
+const IconComponent = (MdiIcon as any).default
+
+export function Icon(props: IconProps) {
 
   const {
-    path,
+    name,
     size = 1,
     ...otherProps
   } = props
 
-  const iconPath = mdiIcons[path as keyof typeof mdiIcons]
+  const iconPath = mdiIcons[name as keyof typeof mdiIcons] as string | undefined
 
   if (!iconPath) {
-    console.warn(`Icon "${path}" not found`)
+    console.warn(`Icon "${name}" not found`)
     return null
   }
 
   return (
-    <MdiIcon
+    <IconComponent
       path={iconPath}
       size={size}
       {...otherProps}
