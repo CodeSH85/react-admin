@@ -2,17 +2,71 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Global */
 @theme {
-  --color-primary: #0848a6;
-  --color-on-primary: #ffffff;
-  --color-secondary: #b0d7ff;
-  --color-on-secondary: #ffffff;
-  --color-success: #139a43;
-  --color-on-success: #ffffff;
-  --color-error: #d63230;
-  --color-on-error: #ffffff;
-  --color-surface: #eeeeee;
+  --color-primary: oklch(51.665% 0.22169 261.818);
+  --color-on-primary: oklch(98.8% 0.017 261.818);
+
+  --color-secondary: oklch(71.277% 0.13632 234.163);
+  --color-on-secondary: oklch(98.8% 0.017 234.163);
+
+  --color-info: oklch(58.096% 0.16974 255.95);
+  --color-on-info: oklch(98.8% 0.017 255.95);
+
+  --color-success: oklch(70.079% 0.22035 140.117);
+  --color-on-success: oklch(98.8% 0.017 140.117);
+
+  --color-error: oklch(49.902% 0.1901 18.023);
+  --color-on-error: oklch(98.8% 0.017 19.902);
+
+  --color-bg-layer-1: oklch(85.025% 0.00654 255.716);
+  --color-bg-layer-2: oklch(93.819% 0.01023 229.3);
+  --color-bg-layer-3: oklch(98.8% 0.017 261.818);
+
+  --color-on-layer-1: oklch(30.519% 0.00003 271.152);
+  --color-on-layer-2: oklch(30.519% 0.00003 271.152);
+  --color-on-layer-3: oklch(30.519% 0.00003 271.152);
+
+  --color-bg-base-1: oklch(92.551% 0.00908 214.903);
+  --color-bg-base-2: oklch(96.094% 0.00606 224.225);
+  --color-bg-base-3: oklch(98.8% 0.017 261.818);
+
+  --color-on-bg-base-1: oklch(30.519% 0.00003 271.152);
+  --color-on-bg-base-2: oklch(30.519% 0.00003 271.152);
+  --color-on-bg-base-3: oklch(30.519% 0.00003 271.152);
+
+  /** DarK Mode Color */
+  --color-dark-primary: oklch(55.734% 0.15348 250.4);
+  --color-dark-secondary: oklch(71.277% 0.13632 234.163);
+  --color-dark-info: oklch(58.096% 0.16974 255.95);
+  --color-dark-success: oklch(70.079% 0.22035 140.117);
+  --color-dark-error: oklch(49.902% 0.1901 18.023);
+
+  --color-dark-bg-layer-1: oklch(22.254% 0.00194 286.054);
+  --color-dark-bg-layer-2: oklch(27.313% 0.00185 286.033);
+  --color-dark-bg-layer-3: oklch(51.734% 0.03211 271.152);
+
+  --color-dark-on-layer-1: oklch(90.079% 0.00003 271.152);
+  --color-dark-on-layer-2: oklch(90.079% 0.00003 271.152);
+  --color-dark-on-layer-3: oklch(90.079% 0.00003 271.152);
+
+  --color-dark-bg-base-1: oklch(29.43% 0.00541 285.979);
+  --color-dark-bg-base-2: oklch(33.207% 0.00599 258.438);
+  --color-dark-bg-base-3: oklch(90.079% 0.00003 271.152);
+
+  --color-dark-on-bg-base-1: oklch(90.079% 0.00003 271.152);
+  --color-dark-on-bg-base-2: oklch(90.079% 0.00003 271.152);
+  --color-dark-on-bg-base-3: oklch(90.079% 0.00003 271.152);
+
   --color-current: currentColor;
+
+  --spacing-sm: 0.25rem;
+  --spacing-md: 0.5rem;
+  --spacing-lg: 1rem;
+
+  --rounded-sm: 0.125rem;
+  --rounded-md: 0.25rem;
+  --rounded-lg: 0.5rem;
 }
 
 /*
