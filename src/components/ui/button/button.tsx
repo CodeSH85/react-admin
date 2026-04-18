@@ -12,7 +12,7 @@ const buttonVariants = cva(
   {
     variants: {
       color: {
-        primary: ['bg-primary text-on-primary dark:bg-primary dark:text-on-primary'],
+        primary: ['bg-primary text-on-primary dark:bg-dark-primary dark:text-on-primary'],
         secondary: 'bg-secondary',
         success: 'bg-success',
         error: 'bg-error text-on-error',
@@ -76,9 +76,9 @@ const Button = (props: ButtonProps) => {
       className={buttonClass}
       {...otherProps}
     >
-      {prependIcon && <Icon icon={prependIcon} className="mr-1" />}
+      {prependIcon && <Icon name={prependIcon} className="mr-1" />}
       {children}
-      {appendIcon && <Icon icon={appendIcon} className="ml-1" />}
+      {appendIcon && <Icon name={appendIcon} className="ml-1" />}
     </button>
   )
 }

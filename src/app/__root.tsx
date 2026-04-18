@@ -35,7 +35,7 @@ function RootLayout() {
       <head>
         <HeadContent />
       </head>
-      <body className='w-screen h-screen'>
+      <body className='bg-bg-layer-1 dark:bg-dark-bg-layer-1'>
         <Outlet />
         <Scripts />
       </body>

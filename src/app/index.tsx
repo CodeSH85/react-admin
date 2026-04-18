@@ -3,41 +3,23 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/ui/icon'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { TestComponent } from '@/components/test'
 
 export const Route = createFileRoute('/')({
   component: Home
 })
-
-function Home() {
-  return (
-    <main className="flex flex-col">
-      <TopNav></TopNav>
-      <div className="flex grow max-w-full bg-slate-500 overflow-hidden">
-        <SideNav></SideNav>
-        <div className="flex-auto p-1.5 overflow-hidden">
-          <div className="bg-slate-100 dark:bg-gray-800 min-h-full overflow-auto p-2">
-            {/* <div style={{ height: '1200px', width: '2120px', outline: '2px solid red' }}>123</div> */}
-            <Button>
-              Test Button 123
-            </Button>
-          </div>
-        </div>
-      </div>
-    </main>
-  )
-}
 
 const TopNav = ({ className }: { className?: string }) => {
 
   const { toggleDarkMode } = useDarkMode()
 
   return (
-    <div className={`min-h-8 flex items-center justify-between bg-slate-400 p-1.5 ${className}`}>
+    <div className={`min-h-8 flex items-center justify-between bg-bg-base-1 dark:bg-dark-bg-base-1 text-on-bg-base-1 dark:text-dark-on-bg-base-1 p-sm ${className}`}>
       <div className="">
         Logo
       </div>
       <div className="">
-        <Button 
+        <Button
           size='sm'
           onClick={toggleDarkMode}
         >
@@ -59,8 +41,8 @@ const SideNav = ({ className }: { className?: string }) => {
     <div
       className={
         [
-          `min-w-12 bg-slate-200 p-2 transition-all duration-150 ease-in ${className}`,
-          expand ? 'w-48' : 'w-12'
+          `min-w-10 bg-bg-base-1 dark:bg-dark-bg-base-1 text-on-bg-base-1 dark:text-dark-on-bg-base-1 p-md transition-all duration-150 ease-in ${className}`,
+          expand ? 'w-48' : 'w-10'
         ]
           .join(' ')
       }
@@ -69,14 +51,27 @@ const SideNav = ({ className }: { className?: string }) => {
         onClick={toggleExpand}
       >
         {
-          expand 
-          ? <Icon name="mdiAccount"></Icon>
-          : <Icon name="mdiAirballoon"></Icon>
+          expand
+            ? <Icon name="mdiAccount"></Icon>
+            : <Icon name="mdiAirballoon"></Icon>
         }
       </button>
-      <div className="">
-        Nav
-      </div>
     </div>
+  )
+}
+
+function Home() {
+  return (
+    <main className="flex flex-col">
+      <TopNav></TopNav>
+      <div className="flex flex-1 overflow-hidden">
+        <SideNav></SideNav>
+        <div className="flex-1 p-md overflow-hidden">
+          <div className="min-h-full bg-bg-base-2 dark:bg-dark-bg-base-2 text-on-bg-base-2 dark:text-dark-on-bg-base-2 p-md">
+            <TestComponent></TestComponent>
+          </div>
+        </div>
+      </div>
+    </main>
   )
 }
