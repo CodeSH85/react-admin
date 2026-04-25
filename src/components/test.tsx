@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { Dialog } from '@/components/ui/dialog'
 
 export const TestComponent = () => {
   return (
@@ -20,6 +21,17 @@ export const TestComponent = () => {
       <div className="bg-bg-base-2 dark:bg-dark-bg-base-2 flex-1">
         Second Layer
       </div>
+      <Dialog
+        title='Dialog Title'
+      >
+        <Dialog.Trigger>
+          <Button>Open</Button>
+        </Dialog.Trigger>
+        <Dialog.Content>
+          <div className='min-w-80 min-h-50'>Test</div>
+          <Dialog.Footer />
+        </Dialog.Content>
+      </Dialog>
     </div>
   )
 }
