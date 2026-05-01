@@ -1,7 +1,22 @@
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Dialog } from '@/components/ui/dialog'
+import { Checkbox } from './ui/checkbox'
+
+const formFields = {
+  isAgree: false
+}
 
 export const TestComponent = () => {
+  const [form, setForm] = useState(formFields)
+
+  function setAgree(value: boolean) {
+    setForm({
+      ...form,
+      isAgree: value
+    })
+  }
+
   return (
     <div className="flex flex-col gap-md h-full">
       <div className="flex gap-md">
@@ -21,7 +36,14 @@ export const TestComponent = () => {
       <div className="bg-bg-base-2 dark:bg-dark-bg-base-2 flex-1">
         Second Layer
       </div>
+      <Checkbox
+        label='Agree'
+        checked={form.isAgree}
+        onCheckedChange={setAgree}
+      >
+      </Checkbox>
       <Dialog
+        description='This is Dialog'
         title='Dialog Title'
       >
         <Dialog.Trigger>

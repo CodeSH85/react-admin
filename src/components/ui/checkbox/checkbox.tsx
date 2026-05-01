@@ -1,40 +1,49 @@
-'use client';
+import { useId } from 'react'
+import { Checkbox as RawCheckbox } from 'radix-ui'
+import type { ICheckBoxProps } from './type'
+import { twMerge } from 'tailwind-merge'
+import { Icon } from '../icon'
 
-import { useState } from 'react';
-import { Checkbox as HCheckbox, Field, Label } from '@headlessui/react';
-import type { CheckBoxProps } from "./type";
-import { twMerge } from "tailwind-merge";
-
-const Checkbox = (props: CheckBoxProps) => {
+const Checkbox = (props: ICheckBoxProps) => {
   const {
+    id,
     label,
     disabled,
     className: propClassName,
+    checked,
+    onCheckedChange,
     ...otherProps
-  } = props;
-  const [enabled, setEnabled] = useState(false);
+  } = props
+
+  const defaultId = useId()
+
   const inputClass = twMerge(
-    'group block size-4 rounded-sm border bg-white data-checked:bg-blue-500',
+    'w-5 h-5 flex items-center justify-center bg-base-2 dark:bg-dark-bg-base-2 border border-on-bg-base-2 dark:border-dark-on-bg-base-2',
     propClassName
-  );
+  )
+
   return (
-    <Field className='flex items-center gap-2'>
-      <HCheckbox
-        checked={enabled}
-        onChange={setEnabled}
+    <div className="flex align-center items-center gap-md">
+      <RawCheckbox.Root
+        checked={checked}
+        onCheckedChange={onCheckedChange}
         disabled={disabled}
         className={inputClass}
         {...otherProps}
+        id={id ?? defaultId}
       >
-        <svg className="stroke-white opacity-0 group-data-checked:opacity-100" viewBox="0 0 14 14" fill="none">
-          <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </HCheckbox>
-      <Label className={'dark:text-white'}>
-        {label}
-      </Label>
-    </Field>
+        <RawCheckbox.Indicator className='text-on-bg-base-2 dark:text-dark-on-bg-base-2'>
+          <Icon name={checked === 'indeterminate' ? 'mdiMinus' : 'mdiCheck'}></Icon>
+        </RawCheckbox.Indicator>
+      </RawCheckbox.Root>
+      {
+        label &&
+          <label className="" htmlFor={id ?? defaultId}>
+            { label }
+          </label>
+      }
+    </div>
   )
 }
 
-export { Checkbox };
+export { Checkbox }
