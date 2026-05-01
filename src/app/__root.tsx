@@ -24,7 +24,12 @@ export const Route = createRootRoute({
       }
     ]
   }),
-  component: RootLayout
+  component: RootLayout,
+  notFoundComponent: () => {
+    return (
+      <div>Not Found</div>
+    )
+  }
 })
 
 function RootLayout() {
