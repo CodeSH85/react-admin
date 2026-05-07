@@ -1,4 +1,5 @@
 import { Icon } from '@/components/ui/icon'
+import { Button } from '@/components/ui/button'
 
 interface ISideBarProps {
   className?: string
@@ -18,34 +19,42 @@ export const SideBar = (props: ISideBarProps) => {
       className={
         [
           `bg-bg-base-1 dark:bg-dark-bg-base-1 text-on-bg-base-1 dark:text-dark-on-bg-base-1 ${className}
-            p-md transition-all duration-150 ease-in
-          `,
-          expand ? 'w-48' : 'w-12'
+            p-md transition-all duration-150 ease-in max-w-48
+          `
         ]
           .join(' ')
       }
     >
       {
-        modules.map(module => (
-          <button
-            key={module.key}
-            className="
-              flex items-center gap-1 w-full hover:bg-bg-base-2 dark:hover:bg-dark-bg-base-2 rounded cursor-pointer
-              p-sm
-            "
-          >
-            {
-              module.icon &&
-              <Icon
-                name={module.icon}
-                className="max-w-4.5"
-              />
-            }
-            {
-              expand && <span>{module.name}</span>
-            }
-          </button>
-        ))
+        modules.map(module => {
+          return (
+            expand
+              ?
+              <Button
+                variant='flat'
+                color='info'
+                size='md'
+                key={module.key}
+                className='w-full'
+                prependIcon={module.icon || ''}
+              >
+                {module.name}
+              </Button>
+              :
+              <Button
+                variant='flat'
+                color='info'
+                size='md'
+                icon
+                key={module.key}
+                className='w-full'
+              >
+                {
+                  module.icon && <Icon name={module.icon} className='min-w-3'/>
+                }
+              </Button>
+          )
+        })
       }
     </div>
   )
