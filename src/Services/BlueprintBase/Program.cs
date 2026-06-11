@@ -36,6 +36,15 @@ if (app.Environment.IsDevelopment())
 	app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+app.MapGet("/test", () =>
+{
+	return "Hello World!";
+});
+
+if (!app.Environment.IsDevelopment()) 
+{
+    // Only enforce HTTPS in production environments where certificates are explicitly bound
+    app.UseHttpsRedirection();
+}
 
 app.Run();
