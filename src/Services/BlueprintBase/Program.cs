@@ -1,5 +1,6 @@
 using BlueprintBase;
 using BlueprintBase.Models;
+using BlueprintBase.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 
@@ -16,29 +17,38 @@ builder.Services.AddDbContext<PartItemDbContext>(options =>
 	options.UseNpgsql(connectionString)
 );
 
-var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
-{
-	var context = scope.ServiceProvider.GetRequiredService<PartItemDbContext>();
-	
-	var testPartItem = new PartItem("test");
-	context.PartItems.Add(testPartItem);
-	await context.SaveChangesAsync();
-}
-// Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-// Configure the HTTP request pipeline.
+builder.Services.AddScoped<PartService>();
+
+const string GetPartByIdEndpointName = "GetPartById";
+
+var app = builder.Build();
+
+app.UseRouting();
+
 if (app.Environment.IsDevelopment())
 {
 	app.MapOpenApi();
 }
 
-app.MapGet("/test", () =>
+app.MapGet("/parts/{id}", async (int id, PartService partService) =>
 {
-	return "Hello World!";
+	var partItem = await partService.GetPartByIdAsync(id);
+	return partItem == null ? Results.NotFound() : Results.Ok(partItem);
+})
+.WithName(GetPartByIdEndpointName);
+
+app.MapGet("/parts", async (PartService partService) =>
+{
+	return await partService.GetAllPartsAsync();
+});
+
+app.MapPost("/parts", async (PartItem part, PartService partService) =>
+{
+	await partService.AddPartAsync(part);
+	return Results.CreatedAtRoute(GetPartByIdEndpointName, new { id = part.Id }, part);
 });
 
 if (!app.Environment.IsDevelopment()) 
