@@ -8,17 +8,17 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 WORKDIR /src
 
 # Copy project file and restore as distinct layers
-COPY src/Services/BlueprintBase/BlueprintBase.csproj Services/BlueprintBase/
-RUN dotnet restore "Services/BlueprintBase/BlueprintBase.csproj"
+COPY src/Services/Part/Part.csproj Services/Part/
+RUN dotnet restore "Services/Part/Part.csproj"
 
 # Copy source code and publish app
 COPY src/Services/ Services/
-WORKDIR "/src/Services/BlueprintBase"
+WORKDIR "/src/Services/Part"
 
 FROM build AS publish
-RUN dotnet publish "BlueprintBase.csproj" -c Release -o /app/publish
+RUN dotnet publish "Part.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "BlueprintBase.dll"]
+ENTRYPOINT ["dotnet", "Part.dll"]
