@@ -17,6 +17,8 @@ builder.Services.AddDbContext<PartItemDbContext>(options =>
 	options.UseNpgsql(connectionString)
 );
 
+builder.Services.AddValidation();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
