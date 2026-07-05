@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using BlueprintBase.Models;
-namespace BlueprintBase.Controllers;
+using Part.Models;
+namespace Part.Services;
 
 public class PartService(PartItemDbContext context)
 {

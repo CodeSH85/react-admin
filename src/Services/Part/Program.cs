@@ -1,6 +1,7 @@
-using BlueprintBase;
-using BlueprintBase.Models;
-using BlueprintBase.Controllers;
+using Part;
+using Part.Models;
+using Part.Endpoints;
+using Part.Services;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 
@@ -24,8 +25,6 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<PartService>();
 
-const string GetPartByIdEndpointName = "GetPartById";
-
 var app = builder.Build();
 
 app.UseRouting();
@@ -35,23 +34,7 @@ if (app.Environment.IsDevelopment())
 	app.MapOpenApi();
 }
 
-app.MapGet("/parts/{id}", async (int id, PartService partService) =>
-{
-	var partItem = await partService.GetPartByIdAsync(id);
-	return partItem == null ? Results.NotFound() : Results.Ok(partItem);
-})
-.WithName(GetPartByIdEndpointName);
-
-app.MapGet("/parts", async (PartService partService) =>
-{
-	return await partService.GetAllPartsAsync();
-});
-
-app.MapPost("/parts", async (PartItem part, PartService partService) =>
-{
-	await partService.AddPartAsync(part);
-	return Results.CreatedAtRoute(GetPartByIdEndpointName, new { id = part.Id }, part);
-});
+app.MapPartItemEndpoints();
 
 if (!app.Environment.IsDevelopment()) 
 {
