@@ -1,10 +1,21 @@
 using Microsoft.EntityFrameworkCore;
-using BlueprintBase.Models;
+using Part.Models;
 
-namespace BlueprintBase;
+namespace Part;
 
 public class PartItemDbContext(DbContextOptions<PartItemDbContext> options) : DbContext(options)
 {
-  // Target DB Table
   public DbSet<PartItem> PartItems { get; set; } = null!;
+
+  protected override void OnModelCreating(ModelBuilder modelBuilder)
+  {
+    modelBuilder.Entity<PartItem>(entity =>
+    {
+      entity.Property(e => e.Id)
+        .UseIdentityByDefaultColumn();
+
+      entity.Property(e => e.CreatedAt)
+        .HasDefaultValueSql("NOW()");
+    });
+  }
 }

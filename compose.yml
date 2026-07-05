@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: blueprint-base-dbq
+    container_name: blueprint-base-db
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -15,9 +15,11 @@ services:
     image: blueprint-base:latest
     build:
       context: .
-      dockerfile: src/Services/BlueprintBase/dockerfile
+      dockerfile: src/Services/Part/dockerfile
     ports:
       - "5001:8080"
+    environment:
+      - DB_PASSWORD=${DB_PASSWORD}
   nginx:
     image: nginx:alpine
     container_name: nginx
