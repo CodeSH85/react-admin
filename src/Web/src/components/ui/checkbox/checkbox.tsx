@@ -1,8 +1,8 @@
 import { useId } from 'react'
-import { Checkbox as RawCheckbox } from 'radix-ui'
+import { Checkbox as RawCheckbox } from '@base-ui/react/checkbox'
 import type { ICheckBoxProps } from './type'
-import { twMerge } from 'tailwind-merge'
 import { Icon } from '../icon'
+import { cn } from '@/utils'
 
 const Checkbox = (props: ICheckBoxProps) => {
   const {
@@ -11,14 +11,15 @@ const Checkbox = (props: ICheckBoxProps) => {
     disabled,
     className: propClassName,
     checked,
+    indeterminate,
     onCheckedChange,
     ...otherProps
   } = props
 
   const defaultId = useId()
 
-  const inputClass = twMerge(
-    'w-5 h-5 flex items-center justify-center bg-base-2 dark:bg-dark-bg-base-2 border border-on-bg-base-2 dark:border-dark-on-bg-base-2',
+  const inputClass = cn(
+    'w-4 h-4 appearance-none flex items-center justify-center bg-base-2 dark:bg-dark-bg-base-2 border border-on-bg-base-2 dark:border-dark-on-bg-base-2',
     propClassName
   )
 
@@ -26,6 +27,8 @@ const Checkbox = (props: ICheckBoxProps) => {
     <div className="flex align-center items-center gap-md">
       <RawCheckbox.Root
         checked={checked}
+        indeterminate={indeterminate}
+        defaultChecked
         onCheckedChange={onCheckedChange}
         disabled={disabled}
         className={inputClass}
@@ -33,7 +36,7 @@ const Checkbox = (props: ICheckBoxProps) => {
         id={id ?? defaultId}
       >
         <RawCheckbox.Indicator className='text-on-bg-base-2 dark:text-dark-on-bg-base-2'>
-          <Icon name={checked === 'indeterminate' ? 'mdiMinus' : 'mdiCheck'}></Icon>
+          <Icon size={.6} className='font-black' name={indeterminate ? 'mdiMinus' : 'mdiCheck'}></Icon>
         </RawCheckbox.Indicator>
       </RawCheckbox.Root>
       {

@@ -1,22 +1,30 @@
-import type { Select } from 'radix-ui'
-import { LegacyRef } from 'react'
+import type { Select } from '@base-ui/react/select'
 
-export interface ISelectTriggerProps extends Select.SelectTriggerProps {
-  readonly?: boolean
-  placeholder?: string
+export interface ISelectTriggerProps
+  extends Select.Trigger.Props,
+  Pick<Select.Value.Props, 'placeholder'>
+{
+  clearable?: boolean
+}
+
+export interface ISelectItemProps<Value> {
+  label: string
+  value: Value
   disabled?: boolean
 }
 
-export interface ISelectItemProps extends Select.SelectItemProps {
-  ref?: LegacyRef<HTMLDivElement> | undefined
+export interface ISelectContentProps<Value = unknown> extends
+  Select.Popup.Props,
+  Pick<Select.Root.Props<Value, boolean>, 'items'>,
+  Pick<Select.Positioner.Props, 'alignOffset' | 'alignItemWithTrigger'>
+{
+}
+
+export interface ISelectProps<Value, Multiple extends boolean | undefined> extends
+  Pick<ISelectTriggerProps, 'placeholder' | 'clearable'>,
+  Select.Root.Props<Value, Multiple>
+{
   label?: string
-}
-
-export interface ISelectContentProps {
-  items?: ISelectItemProps[]
-}
-
-export interface ISelectProps extends Select.SelectProps, ISelectContentProps {
-  readonly?: boolean
-  placeholder?: string
+  items: ISelectItemProps<Value>[]
+  filterable?: boolean
 }

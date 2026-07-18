@@ -44,7 +44,7 @@ function Home() {
   ]
 
   return (
-    <main className="flex flex-col">
+    <main className="flex flex-col root">
       <TopBar items={topBarItems}></TopBar>
       <div className="flex flex-1 overflow-hidden">
         <SideBar
