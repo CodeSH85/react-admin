@@ -1,19 +1,16 @@
-import { Description, Field, Input, Label } from '@headlessui/react'
-import { InputPropsType } from './type'
-import { twMerge } from 'tailwind-merge'
+import { useId } from 'react'
 import { cva } from 'class-variance-authority'
-
-const labelClass = twMerge(
-  'text-sm/6 font-medium data-disabled:opacity-50 dark:text-white'
-)
-const descClass = twMerge('text-sm/6')
+import { Icon } from '../icon'
+import { Button } from '../button'
+import type { IInputPropsType } from './type'
+import { cn } from '@/utils'
 
 const inputVariants = cva(
   `
     block w-full rounded-md border bg-white/5 py-0.5 px-1 
     text-sm/6 focus:outline-hidden
     outline-2 outline-white/25
-    dark:bg-slate-600 dark:border-transparent dark:text-white
+    dark:bg-dark-bg-base-1 dark:border-transparent dark:text-white
     data-focus:outline-2 data-focus:-outline-offset-2 
     data-focus:outline-white/25
   `,
@@ -25,6 +22,9 @@ const inputVariants = cva(
       },
       disabled: {
         true: 'bg-slate-100 dark:bg-slate-800'
+      },
+      readonly: {
+        true: 'bg-current'
       }
     },
     defaultVariants: {
@@ -32,43 +32,61 @@ const inputVariants = cva(
   }
 )
 
-const TextInput = (props: InputPropsType) => {
+const TextInput = (props: IInputPropsType) => {
   const {
     className: propClassName,
     description,
     label,
     disabled = false,
+    readonly = false,
     clearable = false,
+    id: propId,
     ...otherProps
   } = props
 
-  const inputClass = twMerge(
-    inputVariants({ disabled }),
+  const inputClass = cn(
+    inputVariants({ disabled, readonly }),
     propClassName
   )
 
+  const wrapperClass = cn(
+    'w-auto flex items-center gap-sm'
+  )
+
+  const labelClass = cn(
+    'text-sm/6 font-medium data-disabled:opacity-50 dark:text-white'
+  )
+
+  const descClass = cn('text-sm/6')
+
+  const id = propId ?? useId()
+
   return (
-    <div className="w-full">
-      <Field className="flex">
-        {
-          label &&
-          <Label className={labelClass}>
+    <div className={wrapperClass}>
+      {
+        label &&
+          <div className={labelClass}>
             { label }
-          </Label>
-        }
-        {
-          description &&
-          <Description className={descClass}>
+          </div>
+      }
+      {
+        description &&
+          <div className={descClass}>
             { description }
-          </Description>
-        }
-        <Input
-          className={inputClass}
-          disabled={disabled}
-          {...otherProps}
-        >
-        </Input>
-      </Field>
+          </div>
+      }
+      <input
+        id={id}
+        className={inputClass}
+        disabled={disabled}
+        {...otherProps}
+      />
+      {
+        clearable &&
+        <Button variant='plain' className="">
+          <Icon name='mdiClose'></Icon>
+        </Button>
+      }
     </div>
   )
 }

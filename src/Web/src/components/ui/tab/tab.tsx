@@ -1,5 +1,5 @@
 import { Icon } from '../icon'
-import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils'
 
 import type { TabItemProp, TabProps } from './type'
 
@@ -16,7 +16,7 @@ const TabItem = (props: TabItemProp) => {
     ...rest
   } = props
 
-  const tabItemDefaultClass = twMerge(
+  const tabItemDefaultClass = cn(
     'px-4 py-1 flex gap-1 text-slate-600 justify-between bg-slate-50 cursor-pointer items-center',
     active && 'bg-white text-black',
     propClass

@@ -1,8 +1,9 @@
 import { createContext, useContext } from 'react'
-import { Dialog as RawDialog } from 'radix-ui'
+import { Dialog as RawDialog } from '@base-ui/react/dialog'
 import { Icon } from '../icon'
 
 interface IDialogBasicProps {
+  description?: string
   overlay?: boolean
   closeOnClickOutside?: boolean
   title?: string
@@ -12,6 +13,7 @@ interface IDialogBasicProps {
 const DialogContext = createContext({
   title: undefined,
   overlay: false,
+  description: null,
   closeOnClickOutside: false
 })
 
@@ -21,15 +23,15 @@ export const DialogTrigger = (props) => {
   } = props
 
   return (
-    <RawDialog.Trigger asChild> 
-      { 
-        children 
+    <>
+      {
+        children
           ? children
           : <RawDialog.Close>
-              Close
-            </RawDialog.Close>
+            Close
+          </RawDialog.Close>
       }
-    </RawDialog.Trigger>
+    </>
   )
 }
 
@@ -45,16 +47,38 @@ export const DialogHeader = (props: IDialogHeaderProps) => {
   const { title } = useContext(DialogContext)
 
   return (
-    children 
-      ? children
-      : 
-        <RawDialog.Title className="flex items-center gap-2">
-          {title && <p>{ title }</p>}
-          <div className='flex-1' />
-            <RawDialog.Close asChild>
+    <RawDialog.Title>
+      {
+        children
+          ? children
+          :
+          <div className='flex items-center'>
+            {title && <p>{ title }</p>}
+            <div className='flex-1' />
+            <RawDialog.Close>
               <Icon name='mdiClose'/>
             </RawDialog.Close>
-        </RawDialog.Title>
+          </div>
+      }
+    </RawDialog.Title>
+  )
+}
+
+export const DialogDescription = (props) => {
+  const {
+    children
+  } = props
+
+  const { description } = useContext(DialogContext)
+
+  return (
+    <RawDialog.Description>
+      {
+        children
+          ? children
+          : description
+      }
+    </RawDialog.Description>
   )
 }
 
@@ -63,7 +87,7 @@ export const DialogContent = (props) => {
     children
   } = props
 
-  const { overlay } = useContext(DialogContext)
+  const { overlay, description } = useContext(DialogContext)
 
   const dialogContentClassName = `
     fixed text-on-base-bg-1 dark:text-dark-on-bg-base-1
@@ -76,13 +100,14 @@ export const DialogContent = (props) => {
 
   return (
     <RawDialog.Portal>
-      { overlay && <RawDialog.Overlay className={dialogOverlayClassName}/> }
-      <RawDialog.DialogContent
+      { overlay && <RawDialog.Backdrop className={dialogOverlayClassName}/> }
+      <RawDialog.Popup
         className={dialogContentClassName}
       >
         <DialogHeader></DialogHeader>
+        { description && <DialogDescription /> }
         { children }
-      </RawDialog.DialogContent>
+      </RawDialog.Popup>
     </RawDialog.Portal>
   )
 }
@@ -94,8 +119,8 @@ export const DialogFooter = (props) => {
 
   return (
     children
-    ? children 
-    :
+      ? children
+      :
       <div className='flex items-center justify-end gap-2'>
         <RawDialog.Close>
           Cancel
@@ -112,11 +137,13 @@ export const Dialog = (props: IDialogBasicProps) => {
     children,
     overlay = true,
     title,
+    description,
     closeOnClickOutside = true
   } = props
 
-  const dialogContextValue = { 
+  const dialogContextValue = {
     title,
+    description,
     overlay,
     closeOnClickOutside
   }
@@ -131,5 +158,7 @@ export const Dialog = (props: IDialogBasicProps) => {
 }
 
 Dialog.Trigger = DialogTrigger
+Dialog.Description = DialogDescription
+Dialog.Header = DialogHeader
 Dialog.Content = DialogContent
 Dialog.Footer = DialogFooter

@@ -1,6 +1,6 @@
-import type { Checkbox } from 'radix-ui'
+import type { Checkbox } from '@base-ui/react/checkbox'
 
-export interface ICheckBoxProps extends Checkbox.CheckboxProps {
+export interface ICheckBoxProps extends Checkbox.Root.Props {
   className?: string
   label?: string
   [key: string]: unknown

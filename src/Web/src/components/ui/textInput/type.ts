@@ -1,15 +1,16 @@
-import { InputProps } from "@headlessui/react"
 
-export type InputPropsType = {
+export interface IInputPropsType {
   id?: string
   name?: string
-  label?: string 
+  label?: string
   type?: 'number' | 'text'
-  description?: string | number
-  defaultValue?: string | number
-  clearable?: boolean
   value?: any
+  defaultValue?: string | number
+  description?: string | number
+  clearable?: boolean
+  disabled?: boolean
+  readonly?: boolean
   children?: React.ReactNode
   className?: string
   onChange?: React.ChangeEventHandler<HTMLInputElement>
-} & InputProps
+}

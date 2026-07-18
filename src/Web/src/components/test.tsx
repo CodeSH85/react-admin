@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Dialog } from '@/components/ui/dialog'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Select } from '@/components/ui/select'
+import { TextInput } from '@/components/ui/textInput'
 
 const formFields = {
   isDisabled: false,
@@ -25,6 +26,12 @@ export const TestComponent = () => {
     })
   }
 
+  const [value, setValue] = useState<string | null>(null)
+
+  function handleValueChange(newValue: string | null) {
+    setValue(newValue)
+  }
+
   return (
     <div className="flex flex-col gap-md h-full">
       <div className="flex gap-md">
@@ -38,11 +45,11 @@ export const TestComponent = () => {
           Test Button 123
         </Button>
         <div className="bg-bg-base-1 dark:bg-dark-bg-base-1 p-md rounded-md">
-          <p>123 Test</p>
+          <p>Test</p>
         </div>
       </div>
       <div className="bg-bg-base-2 dark:bg-dark-bg-base-2 flex-1">
-        Second Layer
+        {value}
       </div>
       <div className="flex items-center gap-md">
         <Checkbox
@@ -59,17 +66,28 @@ export const TestComponent = () => {
 
       <div className="min-w-12">
         <Select
+          value={value}
           disabled={form.isDisabled}
-          placeholder={'select'}
-          readonly={form.isReadonly}
-          items={[
-            { label: 'test', value: 'test' },
-            { label: 'test 2', value: 'test2', disabled: true },
-            { label: 'test 3', value: 'test4' },
-            { label: 'test 4', value: 'test5' }
-          ]}
+          label={'Select Label'}
+          placeholder={'select placeholder'}
+          readOnly={form.isReadonly}
+          clearable
+          items={
+            [
+              { label: 'test 1', value: 'test1' },
+              { label: 'test 2', value: 'test2', disabled: true },
+              { label: 'test 3', value: 'test3' },
+              { label: 'test 4', value: 'test4' }
+            ]
+          }
+          onValueChange={handleValueChange}
         >
         </Select>
+      </div>
+      <div className="">
+        <TextInput
+          clearable
+        />
       </div>
       <Dialog
         description='This is Dialog'

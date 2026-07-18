@@ -6,6 +6,7 @@
 @theme {
   --color-primary: oklch(51.665% 0.22169 261.818);
   --color-on-primary: oklch(98.8% 0.017 261.818);
+  --color-hover-primary: oklch(45.116% 0.18438 261.818);
 
   --color-secondary: oklch(71.277% 0.13632 234.163);
   --color-on-secondary: oklch(98.8% 0.017 234.163);
@@ -37,6 +38,8 @@
 
   /** DarK Mode Color */
   --color-dark-primary: oklch(55.734% 0.15348 250.4);
+  --color-dark-hover-primary: oklch(62.37% 0.17519 250.4);
+
   --color-dark-secondary: oklch(71.277% 0.13632 234.163);
   --color-dark-info: oklch(58.096% 0.16974 255.95);
   --color-dark-success: oklch(70.079% 0.22035 140.117);
@@ -52,7 +55,7 @@
 
   --color-dark-bg-base-1: oklch(29.43% 0.00541 285.979);
   --color-dark-bg-base-2: oklch(33.207% 0.00599 258.438);
-  --color-dark-bg-base-3: oklch(90.079% 0.00003 271.152);
+  --color-dark-bg-base-3: oklch(36.002% 0.00004 271.152);
 
   --color-dark-on-bg-base-1: oklch(90.079% 0.00003 271.152);
   --color-dark-on-bg-base-2: oklch(90.079% 0.00003 271.152);
@@ -98,4 +101,7 @@ body {
 main {
   width: 100%;
   height: 100%;
+}
+.root {
+  isolation: isolate;
 }
