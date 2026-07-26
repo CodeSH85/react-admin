@@ -14,6 +14,16 @@ var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
 var baseConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 var connectionString = $"{baseConnectionString};Password={dbPassword}";
 
+builder.Services.AddCors(options =>
+{
+	options.AddDefaultPolicy(policy => 
+		policy
+			.AllowAnyOrigin()
+			.AllowAnyHeader()
+			.AllowAnyMethod()
+);
+});
+
 builder.Services.AddDbContext<PartItemDbContext>(options =>
 	options.UseNpgsql(connectionString)
 );
@@ -36,10 +46,12 @@ if (app.Environment.IsDevelopment())
 
 app.MapPartItemEndpoints();
 
+app.UseCors();
+
 if (!app.Environment.IsDevelopment()) 
 {
-    // Only enforce HTTPS in production environments where certificates are explicitly bound
-    app.UseHttpsRedirection();
+	// Only enforce HTTPS in production environments where certificates are explicitly bound
+	app.UseHttpsRedirection();
 }
 
 app.Run();
