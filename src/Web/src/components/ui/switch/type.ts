@@ -1,4 +1,4 @@
-export type SwitchPropType = {
+export interface SwitchPropType {
   checked?: boolean;
   className?: string;
   description?: string;

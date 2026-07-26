@@ -1,5 +1,6 @@
+import { Input } from '@base-ui/react'
 
-export interface IInputPropsType {
+export interface IInputPropsType extends Input.Props {
   id?: string
   name?: string
   label?: string

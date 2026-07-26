@@ -5,6 +5,8 @@ export interface ISelectTriggerProps
   Pick<Select.Value.Props, 'placeholder'>
 {
   clearable?: boolean
+  onClearValue?: (e: React.MouseEvent) => void
+  hasValue?: boolean
 }
 
 export interface ISelectItemProps<Value> {
@@ -27,4 +29,5 @@ export interface ISelectProps<Value, Multiple extends boolean | undefined> exten
   label?: string
   items: ISelectItemProps<Value>[]
   filterable?: boolean
+  width?: number | string
 }

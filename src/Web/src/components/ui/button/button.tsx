@@ -1,17 +1,25 @@
+import { Button as RawButton } from '@base-ui/react/button'
 import { cva } from 'class-variance-authority'
-import type { ButtonProps } from './type'
-import { Icon } from '../icon'
 import { cn } from '@/utils'
+
+import type { ButtonProps } from './type'
 
 const buttonVariants = cva(
   `
     w-fit h-fit rounded flex items-center active:bg-opacity-75 transition-all cursor-pointer
+    bg-clip-padding 
+    focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 
+    outline-none select-none 
+    active:not-aria-[haspopup]:translate-y-px 
+    disabled:pointer-event-none disabled:cursor-auto disabled:opacity-50
+    aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 
+    [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4
   `,
   {
     variants: {
       color: {
         primary: 'bg-primary text-on-primary dark:bg-dark-primary dark:text-on-primary hover:bg-hover-primary dark:hover:bg-dark-hover-primary',
-        secondary: 'bg-secondary text-on-secondary dark:bg-dark-secondary',
+        secondary: 'bg-secondary text-on-secondary dark:bg-dark-secondary hover:bg-hover-secondary dark:hover:bg-dark-hover-secondary',
         success: 'bg-success',
         error: 'bg-error text-on-error',
         current: 'bg-current',
@@ -25,11 +33,11 @@ const buttonVariants = cva(
         text: 'bg-surface dark:bg-slate-700/10 text-current'
       },
       size: {
-        xs: 'text-xs px-1 py-0.5',
+        xs: 'text-xs px-2 py-1',
         sm: 'text-sm px-2 py-1',
-        md: 'text-md px-3 py-1.5',
-        lg: 'text-lg px-4 py-2',
-        xl: 'text-xl px-5 py-3'
+        md: 'text-md px-2 py-1',
+        lg: 'text-md px-2.5 py-1.5',
+        xl: 'text-xl px-2.5 py-1.5'
       },
       rounded: {
         normal: 'rounded-sm',
@@ -77,14 +85,15 @@ const Button = (props: ButtonProps) => {
   )
 
   return (
-    <button
+    <RawButton
       className={buttonClass}
+      data-slot='button'
       {...otherProps}
     >
-      {prependIcon && <Icon name={prependIcon} className="mr-1" />}
+      {prependIcon}
       {children}
-      {appendIcon && <Icon name={appendIcon} className="ml-1" />}
-    </button>
+      {appendIcon}
+    </RawButton>
   )
 }
 

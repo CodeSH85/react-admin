@@ -1,46 +1,57 @@
 @import 'tailwindcss';
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Global */
 @theme {
   --color-primary: oklch(51.665% 0.22169 261.818);
   --color-on-primary: oklch(98.8% 0.017 261.818);
-  --color-hover-primary: oklch(45.116% 0.18438 261.818);
+  --color-hover-primary: oklch(47.291% 0.18313 261.414);
 
   --color-secondary: oklch(71.277% 0.13632 234.163);
   --color-on-secondary: oklch(98.8% 0.017 234.163);
+  --color-hover-secondary: oklch(73.068% 0.13529 233.503);
 
   --color-info: oklch(58.096% 0.16974 255.95);
   --color-on-info: oklch(98.8% 0.017 255.95);
+  --color-hover-secondary: oklch(58.096% 0.16974 255.95);
 
   --color-success: oklch(70.079% 0.22035 140.117);
   --color-on-success: oklch(98.8% 0.017 140.117);
+  --color-hover-secondary: oklch(70.079% 0.22035 140.117);
 
   --color-error: oklch(49.902% 0.1901 18.023);
   --color-on-error: oklch(98.8% 0.017 19.902);
+  --color-hover-error: oklch(49.902% 0.1901 18.023);
 
   --color-bg-layer-1: oklch(85.025% 0.00654 255.716);
-  --color-bg-layer-2: oklch(93.819% 0.01023 229.3);
-  --color-bg-layer-3: oklch(98.8% 0.017 261.818);
-
+  --color-hover-layer-1: oklch(85.025% 0.00654 255.716);
   --color-on-layer-1: oklch(30.519% 0.00003 271.152);
+
+  --color-bg-layer-2: oklch(93.819% 0.01023 229.3);
   --color-on-layer-2: oklch(30.519% 0.00003 271.152);
+
+  --color-bg-layer-3: oklch(98.8% 0.017 261.818);
   --color-on-layer-3: oklch(30.519% 0.00003 271.152);
 
   --color-bg-base-1: oklch(92.551% 0.00908 214.903);
-  --color-bg-base-2: oklch(96.094% 0.00606 224.225);
-  --color-bg-base-3: oklch(98.8% 0.017 261.818);
-
+  --color-hover-bg-base-1: oklch(92.551% 0.00908 214.903);
+  --color-active-bg-base-1: oklch(92.551% 0.00908 214.903);
+  --color-selected-bg-base-1: oklch(92.551% 0.00908 214.903);
   --color-on-bg-base-1: oklch(30.519% 0.00003 271.152);
+
+  --color-bg-base-2: oklch(96.094% 0.00606 224.225);
   --color-on-bg-base-2: oklch(30.519% 0.00003 271.152);
+
+  --color-bg-base-3: oklch(98.8% 0.017 261.818);
   --color-on-bg-base-3: oklch(30.519% 0.00003 271.152);
 
   /** DarK Mode Color */
   --color-dark-primary: oklch(55.734% 0.15348 250.4);
-  --color-dark-hover-primary: oklch(62.37% 0.17519 250.4);
+  --color-dark-hover-primary: oklch(62.609% 0.1446 247.789);
 
   --color-dark-secondary: oklch(71.277% 0.13632 234.163);
+  --color-dark-hover-secondary: oklch(75.19% 0.13381 232.975);
+
   --color-dark-info: oklch(58.096% 0.16974 255.95);
   --color-dark-success: oklch(70.079% 0.22035 140.117);
   --color-dark-error: oklch(49.902% 0.1901 18.023);
@@ -70,6 +81,10 @@
   --rounded-sm: 0.125rem;
   --rounded-md: 0.25rem;
   --rounded-lg: 0.5rem;
+
+  --color-input-border: oklch(86.158% 0.0055 16.285);
+  --color-dark-input-border: oklch(58.971% 0.00007 271.152);
+
 }
 
 /*

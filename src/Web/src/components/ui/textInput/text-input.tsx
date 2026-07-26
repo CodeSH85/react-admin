@@ -1,18 +1,19 @@
 import { useId } from 'react'
-import { cva } from 'class-variance-authority'
-import { Icon } from '../icon'
-import { Button } from '../button'
+import { Input as RawInput } from '@base-ui/react/input'
 import type { IInputPropsType } from './type'
+import { cva } from 'class-variance-authority'
 import { cn } from '@/utils'
 
 const inputVariants = cva(
   `
-    block w-full rounded-md border bg-white/5 py-0.5 px-1 
-    text-sm/6 focus:outline-hidden
-    outline-2 outline-white/25
-    dark:bg-dark-bg-base-1 dark:border-transparent dark:text-white
-    data-focus:outline-2 data-focus:-outline-offset-2 
-    data-focus:outline-white/25
+    block w-full min-w-0 rounded-md bg-white/5 py-0.5 px-1 text-md transition-colors
+    focus:outline-hidden 
+    border border-input-border dark:border-dark-input-border
+    outline-none focus-visible:border-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 
+    dark:bg-dark-bg-base-1 dark:text-white 
+    data-focus:outline-white/25 dark:disabled:bg-input/80 
+    disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm
+    dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40
   `,
   {
     variants: {
@@ -35,11 +36,8 @@ const inputVariants = cva(
 const TextInput = (props: IInputPropsType) => {
   const {
     className: propClassName,
-    description,
-    label,
     disabled = false,
     readonly = false,
-    clearable = false,
     id: propId,
     ...otherProps
   } = props
@@ -49,45 +47,15 @@ const TextInput = (props: IInputPropsType) => {
     propClassName
   )
 
-  const wrapperClass = cn(
-    'w-auto flex items-center gap-sm'
-  )
-
-  const labelClass = cn(
-    'text-sm/6 font-medium data-disabled:opacity-50 dark:text-white'
-  )
-
-  const descClass = cn('text-sm/6')
-
   const id = propId ?? useId()
 
   return (
-    <div className={wrapperClass}>
-      {
-        label &&
-          <div className={labelClass}>
-            { label }
-          </div>
-      }
-      {
-        description &&
-          <div className={descClass}>
-            { description }
-          </div>
-      }
-      <input
-        id={id}
-        className={inputClass}
-        disabled={disabled}
-        {...otherProps}
-      />
-      {
-        clearable &&
-        <Button variant='plain' className="">
-          <Icon name='mdiClose'></Icon>
-        </Button>
-      }
-    </div>
+    <RawInput
+      id={id}
+      className={inputClass}
+      disabled={disabled}
+      {...otherProps}
+    />
   )
 }
 

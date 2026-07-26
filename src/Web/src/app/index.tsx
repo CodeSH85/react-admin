@@ -4,6 +4,7 @@ import { TestComponent } from '@/components/test'
 import { SideBar } from '@/components/system/side-bar'
 import { TopBar } from '@/components/system/top-bar'
 import { Container } from '@/components/ui/container'
+import { MdDashboard, MdMenu, MdMenuOpen } from 'react-icons/md'
 
 export const Route = createFileRoute('/')({
   component: Home
@@ -14,12 +15,12 @@ function Home() {
     {
       name: 'Dashboard',
       key: 'dashboard',
-      icon: 'mdiViewDashboard'
+      icon: <MdDashboard></MdDashboard>
     },
     {
       name: 'Browse',
       key: 'browse',
-      icon: 'mdiViewDashboard'
+      icon: <MdDashboard></MdDashboard>
     }
   ]
 
@@ -33,7 +34,7 @@ function Home() {
     },
     {
       key: 'sidebarToggle',
-      icon: isExpanded ? 'mdiMenuOpen' : 'mdiMenu',
+      icon: isExpanded ? <MdMenuOpen></MdMenuOpen> : <MdMenu></MdMenu>,
       type: 'button' as const,
       events: {
         onClick: () => {

@@ -1,23 +1,33 @@
+import { useState } from 'react'
 import { Select as RawSelect } from '@base-ui/react/select'
 import type {
   ISelectTriggerProps,
   ISelectContentProps,
   ISelectProps
 } from './type'
-import { Icon } from '@/components/ui/icon'
 import { cn } from '@/utils'
+import { MdClose, MdCheck, MdArrowDropDown } from 'react-icons/md'
 
 const SelectTrigger = (props: ISelectTriggerProps) => {
   const {
     className,
     placeholder,
+    onClearValue,
     clearable,
+    hasValue,
     ...otherProps
   } = props
 
+  function handleClearValue(event: React.MouseEvent | React.PointerEvent) {
+    event.stopPropagation()
+    if (event.type === 'click') {
+      onClearValue?.(event as React.MouseEvent)
+    }
+  }
+
   const triggerClassName = cn(
     `
-    min-w-36 px-2 py-1 flex items-center justify-between leading-none whitespace-nowrap gap-1.5 
+    min-w-32 w-fit px-2 py-1 flex items-center justify-between leading-none whitespace-nowrap gap-1.5 
     outline-none select-none
     focus-visible:bg-base-3 focus-visible:bg-base-3 
     bg-bg-base-3 dark:bg-dark-bg-base-3 
@@ -36,13 +46,18 @@ const SelectTrigger = (props: ISelectTriggerProps) => {
       <RawSelect.Value placeholder={placeholder}/>
       <div className="flex items-center gap-1">
         <RawSelect.Icon>
-          <Icon name='mdiChevronDown'></Icon>
+          <MdArrowDropDown></MdArrowDropDown>
         </RawSelect.Icon>
         {
-          clearable &&
-            <RawSelect.Icon>
-              <Icon name='mdiClose'></Icon>
-            </RawSelect.Icon>
+          clearable && hasValue &&
+            <span
+              aria-hidden
+              onClick={handleClearValue}
+              onPointerDown={handleClearValue}
+              onMouseDown={handleClearValue}
+            >
+              <MdClose></MdClose>
+            </span>
         }
       </div>
     </RawSelect.Trigger>
@@ -60,12 +75,19 @@ const SelectContent = (props: ISelectContentProps) => {
   return (
     <RawSelect.Portal>
       <RawSelect.Positioner
-        className='outline-hidden'
+        className='select-none outline-hidden'
         alignOffset={alignOffset}
         alignItemWithTrigger={alignItemWithTrigger}
       >
         <RawSelect.Popup
-          className={cn('min-w-32 group bg-bg-base-3 dark:bg-dark-bg-base-3 ease-out py-1', className)}
+          className={cn(
+            `
+              min-w-(--anchor-width) origin-(--transform-origin) w-fit data-[side=none]:min-w-(--anchor-width)
+              max-h-(--available-height)
+              group bg-bg-base-3 dark:bg-dark-bg-base-3 ease-out py-1
+            `,
+            className
+          )}
           data-align-trigger={alignItemWithTrigger}
         >
           {
@@ -119,7 +141,7 @@ const SelectItem = (props: RawSelect.Item.Props) => {
       <RawSelect.ItemIndicator
         render={
           <span className="pointer-events-none absolute right-2 flex size-4 items-center justify-center">
-            <Icon name='mdiCheck' className='text-on-bg-base-3 dark:text-dark-on-bg-base-3'></Icon>
+            <MdCheck className='text-on-bg-base-3 dark:text-dark-on-bg-base-3'></MdCheck>
           </span>
         }
       >
@@ -134,12 +156,46 @@ const Select = <Value, Multiple extends boolean | undefined = false >(props: ISe
     placeholder,
     label,
     clearable,
+    value: propValue,
+    onValueChange,
+    multiple,
+    defaultValue,
     ...otherProps
   } = props
+
+  const isControlled = propValue !== undefined
+
+  const [localValue, setLocalValue] = useState<any>(
+    defaultValue ?? (multiple ? [] : null)
+  )
+
+  const value = isControlled ? propValue : localValue
+
+  const handleValueChange = (newValue: any, eventDetails: any) => {
+    if (!isControlled) {
+      setLocalValue(newValue)
+    }
+    onValueChange?.(newValue, eventDetails)
+  }
+
+  function clearValue(event: React.MouseEvent) {
+    const emptyValue = multiple ? [] : null
+    if (!isControlled) {
+      setLocalValue(emptyValue)
+    }
+    onValueChange?.(emptyValue as any, { reason: 'none', event: event.nativeEvent } as any)
+  }
+
+  const hasValue = multiple
+    ? Array.isArray(value) && value.length > 0
+    : value !== null && value !== undefined && value !== ''
 
   return (
     <RawSelect.Root
       items={items}
+      value={value}
+      onValueChange={handleValueChange}
+      multiple={multiple}
       {...otherProps}>
       {label && (
         <RawSelect.Label>
@@ -148,6 +204,8 @@ const Select = <Value, Multiple extends boolean | undefined = false >(props: ISe
       )}
       <SelectTrigger
         clearable={clearable}
+        onClearValue={clearValue}
+        hasValue={hasValue}
         placeholder={placeholder}>
       </SelectTrigger>
       <SelectContent items={items}>

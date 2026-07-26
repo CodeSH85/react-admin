@@ -1,4 +1,3 @@
-import { Icon } from '@/components/ui/icon'
 import { Button } from '@/components/ui/button'
 
 interface ISideBarProps {
@@ -7,7 +6,7 @@ interface ISideBarProps {
   modules: {
     name: string
     key: string
-    icon?: string | null
+    icon?: React.ReactNode
   }[]
 }
 
@@ -36,7 +35,7 @@ export const SideBar = (props: ISideBarProps) => {
                 size='md'
                 key={module.key}
                 className='w-full'
-                prependIcon={module.icon || ''}
+                prependIcon={module.icon || undefined}
               >
                 {module.name}
               </Button>
@@ -49,9 +48,7 @@ export const SideBar = (props: ISideBarProps) => {
                 key={module.key}
                 className='w-full'
               >
-                {
-                  module.icon && <Icon name={module.icon} className='min-w-3'/>
-                }
+                { module.icon }
               </Button>
           )
         })
