@@ -1,7 +1,7 @@
 import { useId } from 'react'
 import { Checkbox as RawCheckbox } from '@base-ui/react/checkbox'
+import { MdCheck, MdIndeterminateCheckBox } from 'react-icons/md'
 import type { ICheckBoxProps } from './type'
-import { Icon } from '../icon'
 import { cn } from '@/utils'
 
 const Checkbox = (props: ICheckBoxProps) => {
@@ -36,7 +36,11 @@ const Checkbox = (props: ICheckBoxProps) => {
         id={id ?? defaultId}
       >
         <RawCheckbox.Indicator className='text-on-bg-base-2 dark:text-dark-on-bg-base-2'>
-          <Icon size={.6} className='font-black' name={indeterminate ? 'mdiMinus' : 'mdiCheck'}></Icon>
+          {
+            indeterminate
+              ? <MdIndeterminateCheckBox></MdIndeterminateCheckBox>
+              : <MdCheck></MdCheck>
+          }
         </RawCheckbox.Indicator>
       </RawCheckbox.Root>
       {

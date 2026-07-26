@@ -1,6 +1,5 @@
-import { Icon } from '../icon'
 import { cn } from '@/utils'
-
+import { MdClose } from 'react-icons/md'
 import type { TabItemProp, TabProps } from './type'
 
 const TabItem = (props: TabItemProp) => {
@@ -26,7 +25,10 @@ const TabItem = (props: TabItemProp) => {
     <div className={tabItemDefaultClass} {...rest}>
       {prepend && prepend}
       <Tag>{title}</Tag>
-      {closable && <Icon icon={'MdClose'} onClick={onClose} />}
+      {closable &&
+        <div onClick={onClose}>
+          <MdClose></MdClose>
+        </div>}
       {append && append}
     </div>
   )

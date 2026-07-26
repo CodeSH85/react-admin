@@ -1,12 +1,12 @@
 import { Button } from '@/components/ui/button'
-import { Icon } from '@/components/ui/icon'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { MdDarkMode, MdWbSunny } from 'react-icons/md'
 
 interface ITopBarProps {
   className?: string
   items: {
     key: string
-    icon?: string
+    icon?: React.ReactNode
     type: 'button' | 'link',
     events?: Record<string, unknown>
     [key: string]: unknown
@@ -20,7 +20,7 @@ export const TopBar = (props: ITopBarProps) => {
     items
   } = props
 
-  const { toggleDarkMode } = useDarkMode()
+  const { darkMode, toggleDarkMode } = useDarkMode()
 
   const containerClassName = `
     min-h-8 flex items-center justify-between p-md 
@@ -37,18 +37,17 @@ export const TopBar = (props: ITopBarProps) => {
               key={item.key}
               { ...(item?.events && { ...item.events }) }
             >
-              { item.icon && <Icon name={item.icon} /> }
+              { item.icon }
             </button>
           ))
         }
-        {/* <img alt="logo here" /> */}
       </div>
       <div className="">
         <Button
           size='sm'
           onClick={toggleDarkMode}
         >
-          Toggle Mode
+          { darkMode ? <MdDarkMode></MdDarkMode> : <MdWbSunny></MdWbSunny> }
         </Button>
       </div>
     </div>

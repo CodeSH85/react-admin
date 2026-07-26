@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react'
 import { Dialog as RawDialog } from '@base-ui/react/dialog'
 import { Icon } from '../icon'
+import { MdClose } from 'react-icons/md'
 
 interface IDialogBasicProps {
   description?: string
@@ -56,7 +57,7 @@ export const DialogHeader = (props: IDialogHeaderProps) => {
             {title && <p>{ title }</p>}
             <div className='flex-1' />
             <RawDialog.Close>
-              <Icon name='mdiClose'/>
+              <MdClose></MdClose>
             </RawDialog.Close>
           </div>
       }

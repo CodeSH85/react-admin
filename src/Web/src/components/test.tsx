@@ -4,6 +4,7 @@ import { Dialog } from '@/components/ui/dialog'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Select } from '@/components/ui/select'
 import { TextInput } from '@/components/ui/textInput'
+import { MdHome } from 'react-icons/md'
 
 const formFields = {
   isDisabled: false,
@@ -26,7 +27,7 @@ export const TestComponent = () => {
     })
   }
 
-  const [value, setValue] = useState<string | null>(null)
+  const [value, setValue] = useState<string | null>('test1')
 
   function handleValueChange(newValue: string | null) {
     setValue(newValue)
@@ -35,21 +36,33 @@ export const TestComponent = () => {
   return (
     <div className="flex flex-col gap-md h-full">
       <div className="flex gap-md">
+        <Button size='xs'>
+          Test Button xs
+        </Button>
         <Button size='sm'>
-          Test Button small
+          Test Button sm
         </Button>
         <Button color='secondary'>
-          Test Button 123
+          Test Button md
         </Button>
-        <Button color='error'>
-          Test Button 123
+        <Button color='error' size='lg'>
+          Test Button lg
         </Button>
-        <div className="bg-bg-base-1 dark:bg-dark-bg-base-1 p-md rounded-md">
-          <p>Test</p>
-        </div>
+        <Button color='success' size='xl'>
+          Test Button xl
+        </Button>
+        <Button disabled size='xl'>
+          Test Button xl
+        </Button>
+        <Button variant='text' icon size='xl'>
+          <MdHome className='text-xl'></MdHome>
+        </Button>
+        <Button rounded='full' size='xl'>
+          <MdHome className='text-xl'></MdHome>
+        </Button>
       </div>
       <div className="bg-bg-base-2 dark:bg-dark-bg-base-2 flex-1">
-        {value}
+        {value || 'select a value'}
       </div>
       <div className="flex items-center gap-md">
         <Checkbox

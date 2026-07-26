@@ -1,14 +1,15 @@
-import type { Variant, Size, Color } from '../type';
+import type { Variant, Size, Color } from '../type'
 
-export type ButtonVariant = 'text' | Variant;
+export type ButtonVariant = 'text' | Variant
 
-export type InternalButtonProps = {
+export interface InternalButtonProps {
   variant?: ButtonVariant;
   color?: Color;
   size?: Size;
-  rounded?: 'normal';
-  prependIcon?: string;
-  appendIcon?: string;
+  disabled?: boolean;
+  rounded?: 'normal' | 'full';
+  prependIcon?: React.ReactNode;
+  appendIcon?: React.ReactNode;
   className?: string;
   children?: React.ReactNode;
   icon?: boolean
