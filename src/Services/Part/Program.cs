@@ -4,6 +4,7 @@ using Part.Endpoints;
 using Part.Services;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
+using Scalar.AspNetCore;
 
 DotNetEnv.Env.Load();
 DotNetEnv.Env.TraversePath().Load();
@@ -42,6 +43,7 @@ app.UseRouting();
 if (app.Environment.IsDevelopment())
 {
 	app.MapOpenApi();
+	app.MapScalarApiReference();
 }
 
 app.MapPartItemEndpoints();
