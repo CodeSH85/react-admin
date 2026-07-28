@@ -15,7 +15,7 @@ public static class PartItemEndpoints
       return Results.Ok(parts);
     });
 
-    partMapGroup.MapGet("/{id}", async (int id, PartService service) =>
+    partMapGroup.MapGet("/{id:int}", async (int id, PartService service) =>
     {
       var part = await service.GetPartByIdAsync(id);
       return part != null 
@@ -29,7 +29,7 @@ public static class PartItemEndpoints
       return Results.Created($"/parts/{createdPart.Id}", createdPart);
     });
 
-    partMapGroup.MapPut("/{id}", async (int id, PartItem updatedPart, PartService service) =>
+    partMapGroup.MapPut("/{id:int}", async (int id, PartItem updatedPart, PartService service) =>
     {
       var part = await service.UpdatePartAsync(id, updatedPart);
       return part != null 
